@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кинотеатры — Справочная служба</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Справочная система кинотеатров</h1>
+
+    <section id="films">
+        <h2>Список фильмов</h2>
+        <button onclick="loadFilms()">Обновить</button>
+        <table id="films-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Режиссёр</th>
+                    <th>Жанр</th>
+                    <th>Студия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Данные фильмов сюда -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="add-film">
+        <h2>Добавить фильм</h2>
+        <form onsubmit="createFilm(event)">
+            <input type="text" id="title" placeholder="Название" required>
+            <input type="text" id="director" placeholder="Режиссёр" required>
+            <input type="text" id="genre" placeholder="Жанр" required>
+            <input type="text" id="studio" placeholder="Киностудия" required>
+            <button type="submit">Добавить</button>
+        </form>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
