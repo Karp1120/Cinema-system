@@ -16,7 +16,7 @@ var (
 
 func Connect() {
 	once.Do(func() {
-		connStr := "host=localhost port=5432 user=postgres password=yourpassword dbname=cinema_db sslmode=disable"
+		connStr := "host=localhost port=5432 user=postgres password=12345 dbname=cinema_db sslmode=disable"
 		var err error
 
 		db, err = sql.Open("postgres", connStr)
