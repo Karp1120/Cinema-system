@@ -4,14 +4,19 @@ import (
 	"log"
 	"net/http"
 
+	gorillahandlers "github.com/gorilla/handlers"
+
+	"github.com/gorilla/mux"
+
 	"cinema.local/db"
 	"cinema.local/handlers"
-	"github.com/gorilla/mux"
 )
 
 func main() {
+	// Подключение к базе данных
 	db.Connect()
 
+	// Создаём маршруты
 	router := mux.NewRouter()
 	api := router.PathPrefix("/api").Subrouter()
 
@@ -28,12 +33,20 @@ func main() {
 	api.HandleFunc("/sessions", handlers.GetSessions).Methods("GET")
 	api.HandleFunc("/sessions", handlers.CreateSession).Methods("POST")
 
-	// Аналитика
+	// Роуты аналитики
 	api.HandleFunc("/repertoire", handlers.RepertoireByCinema).Methods("GET")
 	api.HandleFunc("/cinemas-by-genre", handlers.CinemasByGenre).Methods("GET")
 	api.HandleFunc("/session-info", handlers.SessionInfo).Methods("GET")
 	api.HandleFunc("/films-by-director", handlers.FilmsByDirector).Methods("GET")
 
+	// Включаем CORS
+	corsRouter := gorillahandlers.CORS(
+		gorillahandlers.AllowedOrigins([]string{"*"}),
+		gorillahandlers.AllowedMethods([]string{"GET", "POST", "DELETE", "OPTIONS"}),
+		gorillahandlers.AllowedHeaders([]string{"Content-Type"}),
+	)(router)
+
 	log.Println("Сервер запущен на http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", corsRouter))
+
 }
