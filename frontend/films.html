@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Фильмы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">🏠 Главное меню</a>
+        <a href="films.html">🎬 Фильмы</a>
+        <a href="cinemas.html">🏢 Кинотеатры</a>
+        <a href="sessions.html">🕒 Сеансы</a>
+    </nav>
+
+    <section>
+        <h2>Список фильмов</h2>
+        <button onclick="loadFilms()">Обновить</button>
+        <table id="films-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Режиссёр</th>
+                    <th>Жанр</th>
+                    <th>Студия</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h3>Добавить фильм</h3>
+        <form onsubmit="createFilm(event)">
+            <input type="text" id="title" placeholder="Название" required>
+            <input type="text" id="director" placeholder="Режиссёр" required>
+            <input type="text" id="genre" placeholder="Жанр" required>
+            <input type="text" id="studio" placeholder="Киностудия" required>
+            <button type="submit">Добавить</button>
+        </form>
+    </section>
+
+    <script src="films.js"></script>
+</body>
+</html>

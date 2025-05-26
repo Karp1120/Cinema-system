@@ -5,34 +5,44 @@
     <title>Справочная система кинотеатров</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 50px;
-            align-items: center;
+        body {
+            text-align: center;
         }
-        .menu a {
+        .title {
+            font-size: 32px;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+        .menu-buttons {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .menu-buttons a {
             display: inline-block;
             padding: 15px 30px;
             background-color: #0078d7;
             color: white;
             font-size: 18px;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background-color 0.2s ease;
         }
-        .menu a:hover {
+        .menu-buttons a:hover {
             background-color: #005cbf;
         }
     </style>
 </head>
 <body>
-    <h1>Справочная система сети кинотеатров</h1>
-    <div class="menu">
-        <a href="films.html">Фильмы</a>
-        <a href="cinemas.html">Кинотеатры</a>
-        <a href="sessions.html">Сеансы</a>
+
+    <div class="title">Справочная система кинотеатров</div>
+
+    <div class="menu-buttons">
+        <a href="films.html">🎬 Фильмы</a>
+        <a href="cinemas.html">🏢 Кинотеатры</a>
+        <a href="sessions.html">🕒 Сеансы</a>
     </div>
+
 </body>
 </html>
