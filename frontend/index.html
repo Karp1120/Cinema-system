@@ -2,41 +2,37 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Фильмы</title>
+    <title>Справочная система кинотеатров</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 50px;
+            align-items: center;
+        }
+        .menu a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #0078d7;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+        .menu a:hover {
+            background-color: #005cbf;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Фильмы</a>
+    <h1>Справочная система сети кинотеатров</h1>
+    <div class="menu">
+        <a href="films.html">Фильмы</a>
         <a href="cinemas.html">Кинотеатры</a>
         <a href="sessions.html">Сеансы</a>
-    </nav>
-
-    <section>
-        <h2>Список фильмов</h2>
-        <button onclick="loadFilms()">Обновить</button>
-        <table id="films-table">
-            <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Режиссёр</th>
-                    <th>Жанр</th>
-                    <th>Студия</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <h3>Добавить фильм</h3>
-        <form onsubmit="createFilm(event)">
-            <input type="text" id="title" placeholder="Название" required>
-            <input type="text" id="director" placeholder="Режиссёр" required>
-            <input type="text" id="genre" placeholder="Жанр" required>
-            <input type="text" id="studio" placeholder="Киностудия" required>
-            <button type="submit">Добавить</button>
-        </form>
-    </section>
-
-    <script src="films.js"></script>
+    </div>
 </body>
 </html>
