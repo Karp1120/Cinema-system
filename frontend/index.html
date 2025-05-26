@@ -2,20 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Справочная система кинотеатров</title>
+    <title>Фильмы</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <a href="index.html">Фильмы</a>
+        <a href="cinemas.html">Кинотеатры</a>
+        <a href="sessions.html">Сеансы</a>
+    </nav>
 
-    <h1>Справочная система кинотеатров</h1>
-
-    <div class="tabs">
-        <button class="tab active" onclick="showTab('films')">Фильмы</button>
-        <button class="tab" onclick="showTab('cinemas')">Кинотеатры</button>
-        <button class="tab" onclick="showTab('sessions')">Сеансы</button>
-    </div>
-
-    <div id="films" class="tab-content active">
+    <section>
         <h2>Список фильмов</h2>
         <button onclick="loadFilms()">Обновить</button>
         <table id="films-table">
@@ -38,18 +35,8 @@
             <input type="text" id="studio" placeholder="Киностудия" required>
             <button type="submit">Добавить</button>
         </form>
-    </div>
+    </section>
 
-    <div id="cinemas" class="tab-content">
-        <h2>Список кинотеатров</h2>
-        <p>Раздел в разработке...</p>
-    </div>
-
-    <div id="sessions" class="tab-content">
-        <h2>Сеансы</h2>
-        <p>Раздел в разработке...</p>
-    </div>
-
-    <script src="app.js"></script>
+    <script src="films.js"></script>
 </body>
 </html>
