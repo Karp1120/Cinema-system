@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика и запросы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">🏠 Главное меню</a>
+        <a href="films.html">🎬 Фильмы</a>
+        <a href="cinemas.html">🏢 Кинотеатры</a>
+        <a href="sessions.html">🕒 Сеансы</a>
+        <a href="reports.html">📊 Отчёты</a>
+    </nav>
+    
+
+    <section>
+        <h2>Репертуар по кинотеатру</h2>
+        <form onsubmit="getRepertoireByCinema(event)">
+            <input type="text" id="cinema-name-rep" placeholder="Название кинотеатра" required>
+            <button type="submit">Показать</button>
+        </form>
+        <ul id="repertoire-list"></ul>
+    </section>
+
+    <section>
+        <h2>Кинотеатры, где идут боевики</h2>
+        <button onclick="getCinemasByGenre('боевик')">Показать</button>
+        <ul id="action-cinemas-list"></ul>
+    </section>
+
+    <section>
+        <h2>Свободные места и цена на сеанс</h2>
+        <form onsubmit="getSeatsAndPrice(event)">
+            <input type="number" id="session-id" placeholder="ID сеанса" required>
+            <button type="submit">Показать</button>
+        </form>
+        <div id="seats-price-info"></div>
+    </section>
+
+    <section>
+        <h2>Фильмы заданного режиссёра</h2>
+        <form onsubmit="getFilmsByDirector(event)">
+            <input type="text" id="director-name" placeholder="Имя режиссёра" required>
+            <button type="submit">Показать</button>
+        </form>
+        <ul id="director-films-list"></ul>
+    </section>
+
+    <section>
+        <h2>Кинотеатры, где идут комедии</h2>
+        <button onclick="getCinemasByGenre('комедия')">Показать</button>
+        <ul id="comedy-cinemas-list"></ul>
+    </section>
+</body>
+<script src="reports.js"></script>
+</html>
