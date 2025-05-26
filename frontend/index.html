@@ -2,13 +2,20 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Кинотеатры — Справочная служба</title>
+    <title>Справочная система кинотеатров</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Справочная система кинотеатров</h1>
 
-    <section id="films">
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('films')">Фильмы</button>
+        <button class="tab" onclick="showTab('cinemas')">Кинотеатры</button>
+        <button class="tab" onclick="showTab('sessions')">Сеансы</button>
+    </div>
+
+    <div id="films" class="tab-content active">
         <h2>Список фильмов</h2>
         <button onclick="loadFilms()">Обновить</button>
         <table id="films-table">
@@ -20,14 +27,10 @@
                     <th>Студия</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Данные фильмов сюда -->
-            </tbody>
+            <tbody></tbody>
         </table>
-    </section>
 
-    <section id="add-film">
-        <h2>Добавить фильм</h2>
+        <h3>Добавить фильм</h3>
         <form onsubmit="createFilm(event)">
             <input type="text" id="title" placeholder="Название" required>
             <input type="text" id="director" placeholder="Режиссёр" required>
@@ -35,7 +38,17 @@
             <input type="text" id="studio" placeholder="Киностудия" required>
             <button type="submit">Добавить</button>
         </form>
-    </section>
+    </div>
+
+    <div id="cinemas" class="tab-content">
+        <h2>Список кинотеатров</h2>
+        <p>Раздел в разработке...</p>
+    </div>
+
+    <div id="sessions" class="tab-content">
+        <h2>Сеансы</h2>
+        <p>Раздел в разработке...</p>
+    </div>
 
     <script src="app.js"></script>
 </body>

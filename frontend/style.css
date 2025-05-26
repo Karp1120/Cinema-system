@@ -62,3 +62,29 @@ th {
 tr:hover {
     background-color: #f1f1f1;
 }
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #0078d7;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}

@@ -58,3 +58,11 @@ function createFilm(event) {
             alert('Не удалось добавить фильм.');
         });
 }
+
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+
+    document.getElementById(id).classList.add('tab-content', 'active');
+    document.querySelector(`.tab[onclick="showTab('${id}')"]`).classList.add('active');
+}
