@@ -149,3 +149,25 @@ func FilmsByDirector(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }
+
+func GetGenres(w http.ResponseWriter, r *http.Request) {
+	rows, err := db.GetDB().Query(`SELECT DISTINCT genre FROM films ORDER BY genre`)
+	if err != nil {
+		http.Error(w, "Ошибка при получении жанров", http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	var genres []string
+	for rows.Next() {
+		var genre string
+		if err := rows.Scan(&genre); err != nil {
+			http.Error(w, "Ошибка чтения жанра", http.StatusInternalServerError)
+			return
+		}
+		genres = append(genres, genre)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(genres)
+}

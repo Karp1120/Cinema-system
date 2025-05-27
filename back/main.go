@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	gorillahandlers "github.com/gorilla/handlers"
-
 	"github.com/gorilla/mux"
 
 	"cinema.local/db"
@@ -38,6 +37,7 @@ func main() {
 	api.HandleFunc("/cinemas-by-genre", handlers.CinemasByGenre).Methods("GET")
 	api.HandleFunc("/session-info", handlers.SessionInfo).Methods("GET")
 	api.HandleFunc("/films-by-director", handlers.FilmsByDirector).Methods("GET")
+	api.HandleFunc("/genres", handlers.GetGenres).Methods("GET") // ✅ добавлен маршрут для жанров
 
 	// Включаем CORS
 	corsRouter := gorillahandlers.CORS(
@@ -48,5 +48,4 @@ func main() {
 
 	log.Println("Сервер запущен на http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", corsRouter))
-
 }
