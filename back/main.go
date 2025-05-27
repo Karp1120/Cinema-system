@@ -39,6 +39,10 @@ func main() {
 	api.HandleFunc("/films-by-director", handlers.FilmsByDirector).Methods("GET")
 	api.HandleFunc("/genres", handlers.GetGenres).Methods("GET") // ✅ добавлен маршрут для жанров
 
+	// регистрация
+	api.HandleFunc("/register", handlers.Register).Methods("POST")
+	api.HandleFunc("/login", handlers.Login).Methods("POST")
+
 	// Включаем CORS
 	corsRouter := gorillahandlers.CORS(
 		gorillahandlers.AllowedOrigins([]string{"*"}),
