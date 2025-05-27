@@ -10,7 +10,7 @@ import (
 
 // GET /api/sessions
 func GetSessions(w http.ResponseWriter, r *http.Request) {
-	rows, err := db.GetDB().Query(`SELECT id, cinema_id, film_id, date, time, price, available_seats FROM sessions`)
+	rows, err := db.GetDB().Query(`SELECT id, cinema_id, film_id, date, time, price, available_seats, hall_number FROM sessions`)
 	if err != nil {
 		http.Error(w, "Ошибка при получении списка сеансов", http.StatusInternalServerError)
 		return
@@ -41,7 +41,7 @@ func CreateSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_, err := db.GetDB().Exec(
-		`INSERT INTO sessions (cinema_id, film_id, date, time, price, available_seats) VALUES ($1, $2, $3, $4, $5, $6)`,
+		`INSERT INTO sessions (cinema_id, film_id, date, time, price, available_seats, hall_number) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 		s.CinemaID, s.FilmID, s.Date, s.Time, s.Price, s.AvailableSeats,
 	)
 	if err != nil {

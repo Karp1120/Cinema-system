@@ -8,4 +8,5 @@ type Session struct {
 	Time           string `json:"time"`
 	Price          int    `json:"price"`
 	AvailableSeats int    `json:"available_seats"`
+	HallNumber     int    `json:"hall_number"`
 }
