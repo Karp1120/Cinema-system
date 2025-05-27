@@ -15,11 +15,11 @@ func TestCreateSession_Valid(t *testing.T) {
 	body := []byte(`{
 		"cinema_id": 1,
 		"film_id": 1,
-		"date": "2025-06-15",
-		"time": "18:00:00",
+		"date": "2025-12-31",
+		"time": "22:00:00",
 		"price": 500,
 		"available_seats": 100,
-		"hall_number": 8
+		"hall_number": 99
 	}`)
 
 	req, _ := http.NewRequest("POST", "/api/sessions", bytes.NewBuffer(body))

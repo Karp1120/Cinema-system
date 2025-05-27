@@ -40,6 +40,12 @@ func CreateCinema(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// 🔒 Проверка: имя кинотеатра не должно быть пустым
+	if c.Name == "" {
+		http.Error(w, "Название кинотеатра обязательно", http.StatusBadRequest)
+		return
+	}
+
 	_, err := db.GetDB().Exec(
 		`INSERT INTO cinemas (name, address, category, halls, seats, status) VALUES ($1, $2, $3, $4, $5, $6)`,
 		c.Name, c.Address, c.Category, c.Halls, c.Seats, c.Status,

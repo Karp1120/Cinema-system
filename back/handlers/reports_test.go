@@ -49,3 +49,31 @@ func TestSessionInfo(t *testing.T) {
 		t.Errorf("expected 200 OK, got %v", rr.Code)
 	}
 }
+
+func TestFilmsByDirector(t *testing.T) {
+	db.Connect()
+
+	req, _ := http.NewRequest("GET", "/api/films-by-director?name=Тестовый режиссёр", nil)
+	rr := httptest.NewRecorder()
+
+	handler := http.HandlerFunc(FilmsByDirector)
+	handler.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusOK {
+		t.Errorf("expected 200 OK, got %v", rr.Code)
+	}
+}
+
+func TestFilmsByDirector_MissingParam(t *testing.T) {
+	db.Connect()
+
+	req, _ := http.NewRequest("GET", "/api/films-by-director", nil)
+	rr := httptest.NewRecorder()
+
+	handler := http.HandlerFunc(FilmsByDirector)
+	handler.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf("expected 400 Bad Request, got %v", rr.Code)
+	}
+}
