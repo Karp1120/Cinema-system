@@ -40,7 +40,26 @@ func CreateSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err := db.GetDB().Exec(
+	// Проверка: в этом зале, в эту дату и время, в этом кинотеатре уже есть сеанс?
+	var exists bool
+	err := db.GetDB().QueryRow(`
+		SELECT EXISTS (
+			SELECT 1 FROM sessions
+			WHERE cinema_id = $1 AND hall_number = $2 AND date = $3 AND time = $4
+		)
+	`, s.CinemaID, s.HallNumber, s.Date, s.Time).Scan(&exists)
+
+	if err != nil {
+		http.Error(w, "Ошибка при проверке расписания", http.StatusInternalServerError)
+		return
+	}
+
+	if exists {
+		http.Error(w, "Сеанс в этом зале на эту дату и время уже существует", http.StatusConflict)
+		return
+	}
+
+	_, err = db.GetDB().Exec(
 		`INSERT INTO sessions (cinema_id, film_id, date, time, price, available_seats, hall_number) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 		s.CinemaID, s.FilmID, s.Date, s.Time, s.Price, s.AvailableSeats, s.HallNumber,
 	)
