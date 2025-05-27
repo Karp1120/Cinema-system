@@ -20,7 +20,7 @@ func GetSessions(w http.ResponseWriter, r *http.Request) {
 	var sessions []models.Session
 	for rows.Next() {
 		var s models.Session
-		err := rows.Scan(&s.ID, &s.CinemaID, &s.FilmID, &s.Date, &s.Time, &s.Price, &s.AvailableSeats)
+		err := rows.Scan(&s.ID, &s.CinemaID, &s.FilmID, &s.Date, &s.Time, &s.Price, &s.AvailableSeats, &s.HallNumber)
 		if err != nil {
 			http.Error(w, "Ошибка при чтении строки", http.StatusInternalServerError)
 			return
@@ -42,7 +42,7 @@ func CreateSession(w http.ResponseWriter, r *http.Request) {
 
 	_, err := db.GetDB().Exec(
 		`INSERT INTO sessions (cinema_id, film_id, date, time, price, available_seats, hall_number) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-		s.CinemaID, s.FilmID, s.Date, s.Time, s.Price, s.AvailableSeats,
+		s.CinemaID, s.FilmID, s.Date, s.Time, s.Price, s.AvailableSeats, s.HallNumber,
 	)
 	if err != nil {
 		http.Error(w, "Ошибка при добавлении сеанса", http.StatusInternalServerError)
