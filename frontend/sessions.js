@@ -1,4 +1,3 @@
-// Загрузка списка сеансов
 function loadSessions() {
     fetch("http://localhost:8080/api/sessions")
         .then(response => response.json())
@@ -10,11 +9,11 @@ function loadSessions() {
                 row.innerHTML = `
                     <td>${session.date}</td>
                     <td>${session.time}</td>
-                    <td>${session.cinema_name}</td>
-                    <td>${session.film_title}</td>
-                    <td>${session.hall}</td>
+                    <td>${session.cinema_id}</td>
+                    <td>${session.film_id}</td>
+                    <td>${session.hall_number}</td>
                     <td>${session.price}</td>
-                    <td>${session.free_seats}</td>
+                    <td>${session.available_seats}</td>
                 `;
                 tbody.appendChild(row);
             });
@@ -24,7 +23,6 @@ function loadSessions() {
         });
 }
 
-// Отправка нового сеанса
 function createSession(event) {
     event.preventDefault();
 
@@ -33,9 +31,9 @@ function createSession(event) {
         time: document.getElementById("session-time").value,
         cinema_id: parseInt(document.getElementById("session-cinema").value),
         film_id: parseInt(document.getElementById("session-film").value),
-        hall: parseInt(document.getElementById("session-hall").value),
+        hall_number: parseInt(document.getElementById("session-hall").value),
         price: parseFloat(document.getElementById("session-price").value),
-        free_seats: parseInt(document.getElementById("session-free-seats").value)
+        available_seats: parseInt(document.getElementById("session-free-seats").value)
     };
 
     fetch("http://localhost:8080/api/sessions", {
@@ -55,3 +53,6 @@ function createSession(event) {
             alert("Ошибка при добавлении сеанса.");
         });
 }
+
+// Загрузка при открытии страницы
+window.onload = loadSessions;

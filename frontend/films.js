@@ -12,6 +12,7 @@ function loadFilms() {
                     <td>${film.director}</td>
                     <td>${film.genre}</td>
                     <td>${film.studio}</td>
+                    <td><button onclick="deleteFilm(${film.id})">🗑</button></td>
                 `;
                 tbody.appendChild(row);
             });
@@ -51,5 +52,21 @@ function createFilm(event) {
         })
         .catch(() => {
             alert("Ошибка при добавлении фильма.");
+        });
+}
+
+function deleteFilm(id) {
+    if (!confirm("Удалить этот фильм?")) return;
+
+    fetch(`http://localhost:8080/api/films/${id}`, {
+        method: "DELETE"
+    })
+        .then(response => {
+            if (!response.ok) throw new Error();
+            alert("Фильм удалён.");
+            loadFilms();
+        })
+        .catch(() => {
+            alert("Не удалось удалить фильм.");
         });
 }

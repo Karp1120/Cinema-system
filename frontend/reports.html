@@ -13,7 +13,6 @@
         <a href="sessions.html">🕒 Сеансы</a>
         <a href="reports.html">📊 Отчёты</a>
     </nav>
-    
 
     <section>
         <h2>Репертуар по кинотеатру</h2>
@@ -25,9 +24,10 @@
     </section>
 
     <section>
-        <h2>Кинотеатры, где идут боевики</h2>
-        <button onclick="getCinemasByGenre('боевик')">Показать</button>
-        <ul id="action-cinemas-list"></ul>
+        <h2>Кинотеатры по жанру</h2>
+        <select id="genre-select"></select>
+        <button onclick="getCinemasBySelectedGenre()">Показать</button>
+        <ul id="cinemas-by-genre-list"></ul>
     </section>
 
     <section>
@@ -48,11 +48,6 @@
         <ul id="director-films-list"></ul>
     </section>
 
-    <section>
-        <h2>Кинотеатры, где идут комедии</h2>
-        <button onclick="getCinemasByGenre('комедия')">Показать</button>
-        <ul id="comedy-cinemas-list"></ul>
-    </section>
+    <script src="reports.js"></script>
 </body>
-<script src="reports.js"></script>
 </html>

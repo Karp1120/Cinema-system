@@ -1,3 +1,20 @@
+// Загрузка жанров при старте страницы
+window.onload = function () {
+    fetch("http://localhost:8080/api/genres")
+        .then(res => res.json())
+        .then(genres => {
+            const select = document.getElementById("genre-select");
+            genres.forEach(genre => {
+                const option = document.createElement("option");
+                option.value = genre;
+                option.textContent = genre;
+                select.appendChild(option);
+            });
+        });
+
+    // При желании можно сразу загрузить что-то ещё
+};
+
 // 1. Репертуар по кинотеатру
 function getRepertoireByCinema(event) {
     event.preventDefault();
@@ -17,14 +34,14 @@ function getRepertoireByCinema(event) {
         .catch(() => alert("Ошибка при получении репертуара."));
 }
 
-// 2. Кинотеатры по жанру (боевики, комедии и т.д.)
-function getCinemasByGenre(genre) {
-    const target = genre === "боевик" ? "action-cinemas-list" : "comedy-cinemas-list";
+// 2. Кинотеатры по выбранному жанру (из select)
+function getCinemasBySelectedGenre() {
+    const genre = document.getElementById("genre-select").value;
 
     fetch(`http://localhost:8080/api/cinemas-by-genre?genre=${encodeURIComponent(genre)}`)
         .then(res => res.json())
         .then(data => {
-            const list = document.getElementById(target);
+            const list = document.getElementById("cinemas-by-genre-list");
             list.innerHTML = "";
             data.forEach(cinema => {
                 const li = document.createElement("li");
