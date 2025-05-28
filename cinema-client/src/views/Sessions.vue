@@ -70,6 +70,10 @@ const createSession = () => {
     body: JSON.stringify(newSession.value)
   })
     .then(res => {
+      if (res.status === 409) {
+        alert('Ошибка: в этом зале уже есть сеанс на эту дату и время')
+        return
+      }
       if (!res.ok) throw new Error()
       loadSessions()
       newSession.value = {
